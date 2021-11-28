@@ -9,8 +9,7 @@ import javafx.stage.StageStyle;
 public class MainWindow extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println(getClass().getResource(""));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("it/maiku/view/mainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root,1300,675);
         stage.setScene(scene);
