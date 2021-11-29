@@ -24,7 +24,12 @@ public class Color{
         HexColor = m.getMementoState();
     }
 
-    public Memento getMemento() {
+    public ColorMemento getMemento() {
         return new ColorMemento(HexColor);
+    }
+
+    @Override
+    public String toString() {
+        return "HexColor: " + HexColor;
     }
 }
