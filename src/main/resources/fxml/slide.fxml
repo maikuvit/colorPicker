@@ -2,19 +2,30 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.slideController">
    <children>
-      <Slider majorTickUnit="51.0" max="255.0" />
-      <Slider majorTickUnit="51.0" max="255.0" />
       <HBox alignment="CENTER" prefHeight="29.0" prefWidth="152.0">
          <children>
-            <Slider majorTickUnit="51.0" max="255.0" prefHeight="14.0" prefWidth="122.0" />
+            <Slider fx:id="rSlide" majorTickUnit="51.0" max="255.0" prefHeight="14.0" prefWidth="122.0" />
             <Label text="R" />
          </children>
       </HBox>
+      <HBox alignment="CENTER" layoutX="9.0" layoutY="85.0" prefHeight="29.0" prefWidth="152.0">
+         <children>
+            <Slider fx:id="gSlide" majorTickUnit="51.0" max="255.0" prefHeight="14.0" prefWidth="122.0" />
+            <Label text="G" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="9.0" layoutY="99.0" prefHeight="29.0" prefWidth="152.0">
+         <children>
+            <Slider fx:id="bSlide" majorTickUnit="51.0" max="255.0" prefHeight="14.0" prefWidth="122.0" />
+            <Label text="B" />
+         </children>
+      </HBox>
+      <TextField fx:id="rgbTxt" prefHeight="25.0" prefWidth="73.0" promptText="#" />
    </children>
 </FlowPane>

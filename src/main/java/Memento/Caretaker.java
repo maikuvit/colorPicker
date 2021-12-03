@@ -1,15 +1,25 @@
 package Memento;
 
+import observer.Observed;
+import sun.security.jca.GetInstance;
+
 import java.util.Stack;
 
-public class Caretaker {
+public class Caretaker extends Observed {
     private Color actualColor;
     private Stack<ColorMemento> backwardMemento;
     private Stack<ColorMemento> forwardMemento;
 
-    public Caretaker(){
-        backwardMemento = new Stack<>();
-        forwardMemento = new Stack<>();
+    private static Caretaker taker;
+    private Caretaker(){
+        actualColor = new Color();
+        backwardMemento = new Stack<ColorMemento>();
+        forwardMemento = new Stack<ColorMemento>();
+    }
+
+    public static Caretaker GetInstance(){
+        if(taker == null) taker = new Caretaker();
+        return taker;
     }
     public Color getColor() {
         //in lettura non ho bisogno di modificare lo stack ...
@@ -21,6 +31,7 @@ public class Caretaker {
         else backwardMemento.add(actualColor.getMemento());
         actualColor.setHexColor(hexColor);
         forwardMemento.clear();
+        notifyChanges(actualColor);
     }
 
     public Color undo(){
@@ -28,6 +39,7 @@ public class Caretaker {
 
         forwardMemento.add(actualColor.getMemento());
         actualColor.restore(backwardMemento.pop());
+        notifyChanges(actualColor);
         return actualColor;
     }
 
@@ -36,7 +48,7 @@ public class Caretaker {
 
         backwardMemento.add(actualColor.getMemento());
         actualColor.restore(forwardMemento.pop());
+        notifyChanges(actualColor);
         return actualColor;
     }
-
 }
