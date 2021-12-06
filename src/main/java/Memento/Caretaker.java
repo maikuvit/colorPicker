@@ -1,7 +1,6 @@
 package Memento;
 
 import observer.Observed;
-import sun.security.jca.GetInstance;
 
 import java.util.Stack;
 

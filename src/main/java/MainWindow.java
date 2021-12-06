@@ -19,9 +19,10 @@ public class MainWindow extends Application {
 
         loader = new FXMLLoader(getClass().getResource("/fxml/slide.fxml"));
         FlowPane pane = (FlowPane) loader.load();
+
         controllerMain.setMiddleContent(pane);
 
-        Caretaker.GetInstance().addObserver(controllerMain);
+        Caretaker.GetInstance().addObserver(controllerMain); //aggiungo l'observer nell'observed
 
         Scene scene = new Scene(root,650,450);
         stage.setScene(scene);
