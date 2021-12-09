@@ -5,7 +5,7 @@ public class Color{
     private String HexColor;
 
     public Color(){
-        HexColor = "#222222";
+        HexColor = "#1b251d";
     }
 
     public Color(int R, int G, int B){

@@ -12,8 +12,8 @@ public class Caretaker extends Observed {
     private static Caretaker taker;
     private Caretaker(){
         actualColor = new Color();
-        backwardMemento = new Stack<ColorMemento>();
-        forwardMemento = new Stack<ColorMemento>();
+        backwardMemento = new Stack<>();
+        forwardMemento = new Stack<>();
     }
 
     public static Caretaker GetInstance(){
@@ -26,8 +26,7 @@ public class Caretaker extends Observed {
     }
 
     public void setHexColor(String hexColor) {
-        if(actualColor == null)actualColor = new Color(hexColor);
-        else backwardMemento.add(actualColor.getMemento());
+        backwardMemento.add(actualColor.getMemento());
         actualColor.setHexColor(hexColor);
         forwardMemento.clear();
         notifyChanges(actualColor);
@@ -42,6 +41,11 @@ public class Caretaker extends Observed {
         return actualColor;
     }
 
+    public static boolean checkValid(String s){
+        String regex = "#[0-9a-fA-F]{6}";
+        return s.matches(regex);
+    }
+
     public Color redo(){
         if(forwardMemento.empty()) return actualColor;
 
@@ -49,5 +53,13 @@ public class Caretaker extends Observed {
         actualColor.restore(forwardMemento.pop());
         notifyChanges(actualColor);
         return actualColor;
+    }
+
+    public boolean canUndo(){
+        return !backwardMemento.empty();
+    }
+
+    public boolean canRedo(){
+        return !forwardMemento.empty();
     }
 }

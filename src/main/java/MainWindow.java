@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import view.MainWindowController;
+import view.slideController;
 
 public class MainWindow extends Application {
 
@@ -19,9 +20,12 @@ public class MainWindow extends Application {
 
         loader = new FXMLLoader(getClass().getResource("/fxml/slide.fxml"));
         FlowPane pane = (FlowPane) loader.load();
+        slideController sldController = loader.getController();
+        sldController.sliderSetup();
 
         controllerMain.setMiddleContent(pane);
 
+        Caretaker.GetInstance().addObserver(sldController);
         Caretaker.GetInstance().addObserver(controllerMain); //aggiungo l'observer nell'observed
 
         Scene scene = new Scene(root,650,450);
